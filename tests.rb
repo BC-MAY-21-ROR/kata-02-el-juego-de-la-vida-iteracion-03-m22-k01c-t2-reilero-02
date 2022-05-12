@@ -5,22 +5,33 @@ require_relative './cells'
 require_relative './board'
 
 describe Board do
+  
+  describe '.values' do
+    before do
+      io_obj = ($row,$column)
+      expect(subject)
+        .to receive(:gets)
+        .and_return(io_obj)
+        .twice
+      expect(io_obj)
+        .to receive(:chomp)
+        .and_return(:row)
+      expect(io_obj)
+        .to receive(:chomp)
+        .and_return(:column)
+    end
 
-  describe '#values_row' do
-    it 'asf for row it returns integer' do
-      expect(Board.new().values.$row).to eql(3)
+    it 'sets @row and @column according to user\'s input' do
+      subject.values
+
+      expect(subject.instance_variable_get(:@row)).to eq :row
+      expect(subject.instance_variable_get(:@column)).to eq :column
     end
   end
 
-  describe '#values_column' do
-    it 'ask form column it returns integer' do
-      expect(Board.new().values.$column).to eql(3)
+    describe '.create_board' do
+      it 'exists' do
+        expect(Board.new().create_board.class).to eql(Matrix)
+      end
     end
-  end
-
-  describe '.create_board' do
-    it 'exists' do
-      expect(Board.new().create_board.class).to eql(Matrix)
-    end
-  end
 end
