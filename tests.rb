@@ -19,6 +19,7 @@ describe Board do
       expect(io_obj)
         .to receive(:chomp)
         .and_return(:column)
+      end
     end
 
     it 'sets @row and @column according to user\'s input' do
@@ -27,11 +28,17 @@ describe Board do
       expect(subject.instance_variable_get(:@row)).to eq :row
       expect(subject.instance_variable_get(:@column)).to eq :column
     end
-  end
 
     describe '.create_board' do
       it 'exists' do
         expect(Board.new().create_board.class).to eql(Matrix)
       end
     end
+
+    describe '.cell_matrix' do
+      it 'matches our elements, without caring about order' do
+        expect([3, 2, 1]).to contain_exactly(1, 2, 3)
+      end
+    end
+  end
 end

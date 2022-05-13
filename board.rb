@@ -13,4 +13,5 @@ class Board
   def create_board
     matriz = Matrix.build($row, $column) { rand(2) }
   end
+
 end
